@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'budget-tool-front-end';
+  actionType: string;
+
+  get showLogin() {
+    return this.actionType === 'login';
+  }
+  get showSignup() {
+    return this.actionType === 'signup';
+  }
+
+  proceed(actionType) {
+    this.actionType = actionType;
+  }
 }

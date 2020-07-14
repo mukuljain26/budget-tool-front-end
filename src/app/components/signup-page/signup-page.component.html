@@ -1,0 +1,34 @@
+<form [formGroup]="signupForm">
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName" />
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName" />
+  </label>
+
+  <label>
+    Email Address:
+    <input type="text" formControlName="email" />
+  </label>
+
+  <label>
+    Create a password:
+    <input type="text" formControlName="password" />
+  </label>
+
+  <label>
+    Re-enter password:
+    <input type="text" formControlName="reEnteredPassword" />
+  </label>
+
+  <label>
+    Date of birth:
+    <app-date-picker (dob)="getDob($event)"></app-date-picker>
+  </label>
+
+  <button type="submit" (click)="submitSignupData()">Submit</button>
+
+</form>
