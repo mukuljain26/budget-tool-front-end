@@ -1,15 +1,33 @@
 <form [formGroup]="loginForm">
   
+  <div>
     <label>
       Email Address:
-      <input type="text" formControlName="email">
+      <input type="email" formControlName="email" required/>
     </label>
-  
+    <div *ngIf="loginForm.controls.email.invalid">
+      <div *ngIf="loginForm.controls.email.errors.required && (loginForm.controls.email.dirty || loginForm.controls.email.touched || isSubmitted)" class="alert">
+        Email is required.
+      </div>
+      <div *ngIf="loginForm.controls.email.errors.email && (loginForm.controls.email.dirty || loginForm.controls.email.touched || isSubmitted)" class="alert">
+        Incorrect email address
+      </div>
+    </div>
+  </div>
+
+  <div>
     <label>
       Password:
-      <input type="text" formControlName="password">
+      <input type="password" formControlName="password" required/>
     </label>
+    <div *ngIf="loginForm.controls.password.invalid">
+      <div *ngIf="loginForm.controls.password.errors.required && (loginForm.controls.password.dirty || loginForm.controls.password.touched || isSubmitted)" class="alert">
+        Password is required.
+      </div>
+    </div>
+  </div>
 
-    <button type="submit" (click)="login()">Submit</button>
-  
+  <button class="login-button" type="submit" (click)="login()">Login</button>
+  <a class="signup-forgotPassword-link" href="">Forgot Password</a>
+  <p>Do not have an account? Please <a class="signup-forgotPassword-link" href="/signup">signup</a></p>
 </form>

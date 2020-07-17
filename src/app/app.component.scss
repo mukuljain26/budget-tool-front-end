@@ -1,0 +1,27 @@
+.app-title {
+    text-align: center;
+}
+.homepage-flex {
+    display: flex;
+}
+.homepage-flex-budgetImage {
+    flex: 2;
+}
+.homepage-flex-proceed {
+    flex: 1;
+    position: relative;
+}
+.homepage-flex-proceed-app {
+    display: flex;
+}
+.homepage-flex-proceed-app-signup {
+    flex: 1;
+    margin-right: 10px;
+}
+.homepage-flex-proceed-app-login {
+    flex: 1;
+    margin-right: 10px;
+}
+.homepage-flex-proceed-app-aboutus {
+    flex: 1;
+}

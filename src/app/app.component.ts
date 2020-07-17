@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   actionType: string;
+
+  constructor(private router: Router) {}
 
   get showLogin() {
     return this.actionType === 'login';
@@ -17,5 +20,13 @@ export class AppComponent {
 
   proceed(actionType) {
     this.actionType = actionType;
+    switch (actionType) {
+      case 'login':
+        this.router.navigateByUrl('/login');
+        break;
+      case 'signup':
+        this.router.navigateByUrl('/signup');
+        break;
+    }
   }
 }

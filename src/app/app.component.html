@@ -1,8 +1,9 @@
-<h1>Budget</h1>
-<nav>
-  <a (click)="proceed('login')">Login</a>
-  <a (click)="proceed('signup')">Signup</a>
-</nav>
-<app-login-page *ngIf="showLogin"></app-login-page>
-<app-signup-page *ngIf="showSignup"></app-signup-page>
-<router-outlet></router-outlet>
+<!-- <h1 class="app-title">Budget</h1> -->
+<div class="homepage-flex">
+  <div class="homepage-flex-budgetImage">
+    <img src="../assets/budget.jpg"/>
+  </div>
+  <div class="homepage-flex-proceed">
+    <router-outlet></router-outlet>
+  </div>
+</div>

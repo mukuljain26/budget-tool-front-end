@@ -12,10 +12,19 @@ label {
   font-weight: bold;
 }
 
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: 0.4em;
+.login-button {
+  background-color: #007c91;
+  color: #fff;
+  margin: 10px 10px 0px 0px;
+}
+.signup-forgotPassword-link {
+  color: #006a7c;
+}
+.alert {
+  padding: 5px;
+  background-color: #fff;
+  color: red;
+  width: 197px;
 }
 
 /*

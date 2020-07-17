@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApiIntegrationService } from '../../services/api-integration/api-integration.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-page',
@@ -10,6 +11,7 @@ import { ApiIntegrationService } from '../../services/api-integration/api-integr
 export class SignupPageComponent implements OnInit {
   signupForm;
   dob;
+  isSubmitted;
 
   constructor(private formBuilder: FormBuilder, private apiIntegrationService: ApiIntegrationService) { }
 
@@ -19,11 +21,11 @@ export class SignupPageComponent implements OnInit {
 
   createSignupForm() {
     this.signupForm = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
-      password: [''],
-      reEnteredPassword: ['']
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      reEnteredPassword: ['', Validators.required],
     });
   }
 
@@ -34,13 +36,16 @@ export class SignupPageComponent implements OnInit {
   }
 
   submitSignupData() {
-    this.signupForm.value['dob'] = this.dob;
-    console.log(this.signupForm.value, 'the signup form value');
-    const data = {
-      email: this.signupForm.value.email,
-      data: this.signupForm.value
-    };
-    this.apiIntegrationService.submitSignupData(data);
+    this.isSubmitted = true;
+    if (this.signupForm.valid) {
+      this.signupForm.value['dob'] = this.dob;
+      console.log(this.signupForm.value, 'the signup form value');
+      const data = {
+        email: this.signupForm.value.email,
+        data: this.signupForm.value
+      };
+      this.apiIntegrationService.submitSignupData(data);
+    }
   }
 
 }
