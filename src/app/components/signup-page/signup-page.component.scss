@@ -9,7 +9,7 @@
 label {
   display: block;
   width: 10em;
-  margin: 0.5em 0;
+  margin-bottom: 5px;
   color: #607d8b;
   font-weight: bold;
 }
@@ -23,10 +23,13 @@ label {
 .signup-button {
   background-color: #007c91;
   color: #fff;
-  margin: 10px 10px 0px 0px;
+  margin-right: 10px;
 }
 .goBack-to-login-link {
   color: #006a7c;
+}
+.form-control {
+  margin-bottom: 10px;
 }
 /*
   Copyright Google LLC. All Rights Reserved.

@@ -45,4 +45,13 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  showPassword() {
+    const passwordElement = <HTMLInputElement>document.getElementById('login_password');
+    if (passwordElement.type === 'password') {
+      passwordElement.type = 'text';
+    } else {
+      passwordElement.type = 'password';
+    }
+  }
+
 }

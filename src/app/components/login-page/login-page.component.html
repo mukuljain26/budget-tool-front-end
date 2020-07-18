@@ -1,10 +1,10 @@
 <form [formGroup]="loginForm">
   
-  <div>
+  <div class="form-control">
     <label>
       Email Address:
-      <input type="email" formControlName="email" required/>
     </label>
+    <input type="email" formControlName="email" required/>
     <div *ngIf="loginForm.controls.email.invalid">
       <div *ngIf="loginForm.controls.email.errors.required && (loginForm.controls.email.dirty || loginForm.controls.email.touched || isSubmitted)" class="alert">
         Email is required.
@@ -15,11 +15,12 @@
     </div>
   </div>
 
-  <div>
+  <div class="form-control">
     <label>
       Password:
-      <input type="password" formControlName="password" required/>
     </label>
+    <input id="login_password" type="password" formControlName="password" required/>
+    <!-- <input type="checkbox" (click)="showPassword()"><span>Show Password</span> -->
     <div *ngIf="loginForm.controls.password.invalid">
       <div *ngIf="loginForm.controls.password.errors.required && (loginForm.controls.password.dirty || loginForm.controls.password.touched || isSubmitted)" class="alert">
         Password is required.
