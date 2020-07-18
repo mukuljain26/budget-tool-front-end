@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApiIntegrationService } from '../../services/api-integration/api-integration.service';
 import { Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -13,7 +15,11 @@ export class SignupPageComponent implements OnInit {
   dob;
   isSubmitted;
 
-  constructor(private formBuilder: FormBuilder, private apiIntegrationService: ApiIntegrationService) { }
+  constructor(private formBuilder: FormBuilder,
+              private apiIntegrationService: ApiIntegrationService,
+              private authService: AuthService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createSignupForm();
@@ -42,10 +48,15 @@ export class SignupPageComponent implements OnInit {
       console.log(this.signupForm.value, 'the signup form value');
       const data = {
         email: this.signupForm.value.email,
+        password: this.signupForm.value.password,
         data: this.signupForm.value
       };
       this.apiIntegrationService.submitSignupData(data);
     }
+  }
+
+  navigateToLogin() {
+    this.router.navigate([''], {relativeTo: this.activatedRoute});
   }
 
 }

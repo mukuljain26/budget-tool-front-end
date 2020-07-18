@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpService } from '../../services/http/http.service';
 import { URLS } from '../../app-config';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,11 +14,15 @@ import { Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   loginForm;
   isSubmitted;
+  invalidPassword: boolean;
+  isUserInvalid: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -32,17 +37,27 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
+    this.invalidPassword = false;
+    this.isUserInvalid = false;
     this.isSubmitted = true;
     const reqUrl = `${URLS.API_BASE_URL}user?email=${this.loginForm.value.email}`;
-    return this.httpService.get(reqUrl).subscribe(response => {
-      console.log(response, 'response from backend while fetching signup data');
-      if (response.data.password === this.loginForm.value.password) {
-        this.router.navigateByUrl('budget');
-      }
-    },
-    error => {
-      console.log(error, 'error while fetching signup data from backend');
-    });
+    if (this.loginForm.valid) {
+      this.httpService.get(reqUrl).subscribe(response => {
+        console.log(response, 'response from backend while fetching signup data');
+        if (response.data.password === this.loginForm.value.password) {
+          this.authService.userAuthentication(true);
+          this.router.navigate(['budget'], {relativeTo: this.activatedRoute});
+        } else {
+          this.invalidPassword = true;
+        }
+      },
+      error => {
+        this.isUserInvalid = true;
+        console.log(error, 'error while fetching signup data from backend');
+      });
+    } else {
+      console.log('login form is not valid');
+    }
   }
 
   showPassword() {
@@ -52,6 +67,11 @@ export class LoginPageComponent implements OnInit {
     } else {
       passwordElement.type = 'password';
     }
+  }
+
+  navigateToSignup() {
+    this.authService.userRegistration(true);
+    this.router.navigate(['signup'], {relativeTo: this.activatedRoute});
   }
 
 }

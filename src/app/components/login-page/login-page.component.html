@@ -1,5 +1,6 @@
 <form [formGroup]="loginForm">
-  
+  <p *ngIf="invalidPassword" class="loginfom-incorrect">Incorrect password</p>
+  <p *ngIf="isUserInvalid" class="loginfom-incorrect">User Invalid</p>
   <div class="form-control">
     <label>
       Email Address:
@@ -29,6 +30,6 @@
   </div>
 
   <button class="login-button" type="submit" (click)="login()">Login</button>
-  <a class="signup-forgotPassword-link" href="">Forgot Password</a>
-  <p>Do not have an account? Please <a class="signup-forgotPassword-link" href="/signup">signup</a></p>
+  <a class="signup-forgotPassword-link" routerLink="">Forgot Password</a>
+  <p>Do not have an account? Please <a class="signup-forgotPassword-link" (click)="navigateToSignup()">signup</a></p>
 </form>
