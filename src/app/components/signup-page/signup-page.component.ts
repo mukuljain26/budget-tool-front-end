@@ -4,6 +4,8 @@ import { ApiIntegrationService } from '../../services/api-integration/api-integr
 import { Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import { HttpService } from '../../services/http/http.service';
+import { URLS } from '../../app-config';
 
 @Component({
   selector: 'app-signup-page',
@@ -14,12 +16,15 @@ export class SignupPageComponent implements OnInit {
   signupForm;
   dob;
   isSubmitted;
+  isSuccessInSignup: boolean;
+  isUserAlreadyExist: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private apiIntegrationService: ApiIntegrationService,
               private authService: AuthService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.createSignupForm();
@@ -43,6 +48,7 @@ export class SignupPageComponent implements OnInit {
 
   submitSignupData() {
     this.isSubmitted = true;
+    this.isUserAlreadyExist = false;
     if (this.signupForm.valid) {
       this.signupForm.value['dob'] = this.dob;
       console.log(this.signupForm.value, 'the signup form value');
@@ -51,7 +57,17 @@ export class SignupPageComponent implements OnInit {
         password: this.signupForm.value.password,
         data: this.signupForm.value
       };
-      this.apiIntegrationService.submitSignupData(data);
+      const reqUrl = `${URLS.API_BASE_URL}user`;
+      this.httpService.post(reqUrl, data).subscribe(response => {
+        console.log(response, 'response from backend while submitting signup data');
+        this.isSuccessInSignup = true;
+      },
+      error => {
+        if (error.error.code === 11000) {
+          this.isUserAlreadyExist = true;
+        }
+      }
+      );
     }
   }
 

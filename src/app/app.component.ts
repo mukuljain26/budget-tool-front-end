@@ -1,32 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  actionType: string;
+export class AppComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  get showLogin() {
-    return this.actionType === 'login';
-  }
-  get showSignup() {
-    return this.actionType === 'signup';
+  ngOnInit() {
   }
 
-  proceed(actionType) {
-    this.actionType = actionType;
-    switch (actionType) {
-      case 'login':
-        this.router.navigateByUrl('/login');
-        break;
-      case 'signup':
-        this.router.navigateByUrl('/signup');
-        break;
-    }
-  }
 }

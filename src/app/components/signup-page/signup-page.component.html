@@ -1,80 +1,86 @@
-<form [formGroup]="signupForm">
-  <div class="form-control">
-    <label>
-      First Name:
-    </label>
-    <input class="width-input" type="text" formControlName="firstName" required/>
-    <div *ngIf="signupForm.controls.firstName.invalid">
-      <div *ngIf="signupForm.controls.firstName.errors.required && (signupForm.controls.firstName.dirty || signupForm.controls.firstName.touched || isSubmitted)" class="alert">
-         First name is required.
+<div>
+  <p *ngIf="isUserAlreadyExist" class="signupform-incorrect">User already exist</p>
+  <form *ngIf="!isSuccessInSignup" [formGroup]="signupForm">
+    <div class="form-control">
+      <label>
+        First Name:
+      </label>
+      <input class="width-input" type="text" formControlName="firstName" required/>
+      <div *ngIf="signupForm.controls.firstName.invalid">
+        <div *ngIf="signupForm.controls.firstName.errors.required && (signupForm.controls.firstName.dirty || signupForm.controls.firstName.touched || isSubmitted)" class="alert">
+           First name is required.
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="form-control">
-    <label>
-      Last Name:
-    </label>
-    <input type="text" formControlName="lastName" required/>
-    <div *ngIf="signupForm.controls.lastName.invalid">
-      <div *ngIf="signupForm.controls.lastName.errors.required && (signupForm.controls.lastName.dirty || signupForm.controls.lastName.touched || isSubmitted)" class="alert">
-        Last name is required.
+  
+    <div class="form-control">
+      <label>
+        Last Name:
+      </label>
+      <input type="text" formControlName="lastName" required/>
+      <div *ngIf="signupForm.controls.lastName.invalid">
+        <div *ngIf="signupForm.controls.lastName.errors.required && (signupForm.controls.lastName.dirty || signupForm.controls.lastName.touched || isSubmitted)" class="alert">
+          Last name is required.
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="form-control">
-    <label>
-      Email Address:
-    </label>
-    <input type="email" formControlName="email" required/>
-    <div *ngIf="signupForm.controls.email.invalid">
-      <div *ngIf="signupForm.controls.email.errors.required && (signupForm.controls.email.dirty || signupForm.controls.email.touched || isSubmitted)" class="alert">
-        Email Address is required.
-      </div>
-      <div *ngIf="signupForm.controls.email.errors.email && (signupForm.controls.email.dirty || signupForm.controls.email.touched || isSubmitted)" class="alert">
-        Incorrect email address
-      </div>
-    </div>
-  </div>
-
-  <div class="form-control">
-    <label>
-      Create a password:
-    </label>
-    <input type="password" formControlName="password" required/>
-    <div *ngIf="signupForm.controls.password.invalid">
-      <div *ngIf="signupForm.controls.password.errors.required && (signupForm.controls.password.dirty || signupForm.controls.password.touched || isSubmitted)" class="alert">
-        Password is required.
+  
+    <div class="form-control">
+      <label>
+        Email Address:
+      </label>
+      <input type="email" formControlName="email" required/>
+      <div *ngIf="signupForm.controls.email.invalid">
+        <div *ngIf="signupForm.controls.email.errors.required && (signupForm.controls.email.dirty || signupForm.controls.email.touched || isSubmitted)" class="alert">
+          Email Address is required.
+        </div>
+        <div *ngIf="signupForm.controls.email.errors.email && (signupForm.controls.email.dirty || signupForm.controls.email.touched || isSubmitted)" class="alert">
+          Incorrect email address
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="form-control">
-    <label>
-      Re-enter password:
-    </label>
-    <input type="password" formControlName="reEnteredPassword" required/>
-    <div *ngIf="signupForm.controls.reEnteredPassword.invalid">
-      <div *ngIf="signupForm.controls.reEnteredPassword.errors.required && (signupForm.controls.reEnteredPassword.dirty || signupForm.controls.reEnteredPassword.touched || isSubmitted)" class="alert">
-        Re-enter password.
+  
+    <div class="form-control">
+      <label>
+        Create a password:
+      </label>
+      <input type="password" formControlName="password" required/>
+      <div *ngIf="signupForm.controls.password.invalid">
+        <div *ngIf="signupForm.controls.password.errors.required && (signupForm.controls.password.dirty || signupForm.controls.password.touched || isSubmitted)" class="alert">
+          Password is required.
+        </div>
       </div>
     </div>
-    <div *ngIf="signupForm.controls.reEnteredPassword.valid">
-      <div *ngIf="(signupForm.controls.reEnteredPassword.value !== signupForm.controls.password.value) && (signupForm.controls.reEnteredPassword.dirty || signupForm.controls.reEnteredPassword.touched || isSubmitted)" class="alert">
-        Password does not match
+  
+    <div class="form-control">
+      <label>
+        Re-enter password:
+      </label>
+      <input type="password" formControlName="reEnteredPassword" required/>
+      <div *ngIf="signupForm.controls.reEnteredPassword.invalid">
+        <div *ngIf="signupForm.controls.reEnteredPassword.errors.required && (signupForm.controls.reEnteredPassword.dirty || signupForm.controls.reEnteredPassword.touched || isSubmitted)" class="alert">
+          Re-enter password.
+        </div>
+      </div>
+      <div *ngIf="signupForm.controls.reEnteredPassword.valid">
+        <div *ngIf="(signupForm.controls.reEnteredPassword.value !== signupForm.controls.password.value) && (signupForm.controls.reEnteredPassword.dirty || signupForm.controls.reEnteredPassword.touched || isSubmitted)" class="alert">
+          Password does not match
+        </div>
       </div>
     </div>
+  
+    <div class="form-control">
+      <label>
+        Date of birth:
+      </label>
+      <app-date-picker (dob)="getDob($event)"></app-date-picker>
+    </div>
+  
+    <button class="signup-button" type="submit" (click)="submitSignupData()">Signup</button>
+    <span>Go back to <a class="goBack-to-login-link" (click)="navigateToLogin()">login</a></span>
+  
+  </form>
+  <div *ngIf="isSuccessInSignup">
+    <p>You have successfully registered, please <a class="goBack-to-login-link" (click)="navigateToLogin()">login</a> to step into the application, thank you.</p>
   </div>
-
-  <div class="form-control">
-    <label>
-      Date of birth:
-    </label>
-    <app-date-picker (dob)="getDob($event)"></app-date-picker>
-  </div>
-
-  <button class="signup-button" type="submit" (click)="submitSignupData()">Signup</button>
-  <span>Go back to <a class="goBack-to-login-link" (click)="navigateToLogin()">login</a></span>
-
-</form>
+</div>

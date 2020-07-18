@@ -40,19 +40,22 @@ export class LoginPageComponent implements OnInit {
     this.invalidPassword = false;
     this.isUserInvalid = false;
     this.isSubmitted = true;
-    const reqUrl = `${URLS.API_BASE_URL}user?email=${this.loginForm.value.email}`;
     if (this.loginForm.valid) {
+      const reqUrl = `${URLS.API_BASE_URL}user?email=${this.loginForm.value.email}`;
       this.httpService.get(reqUrl).subscribe(response => {
         console.log(response, 'response from backend while fetching signup data');
-        if (response.data.password === this.loginForm.value.password) {
-          this.authService.userAuthentication(true);
-          this.router.navigate(['budget'], {relativeTo: this.activatedRoute});
+        if (response) {
+          if (response.data.password === this.loginForm.value.password) {
+            this.authService.userAuthentication(true);
+            this.router.navigate(['budget'], {relativeTo: this.activatedRoute});
+          } else {
+            this.invalidPassword = true;
+          }
         } else {
-          this.invalidPassword = true;
+          this.isUserInvalid = true;
         }
       },
       error => {
-        this.isUserInvalid = true;
         console.log(error, 'error while fetching signup data from backend');
       });
     } else {

@@ -1,9 +1,3 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  padding-top: 24px;
-}
-
 label {
   display: block;
   width: 8em;
@@ -29,7 +23,7 @@ label {
 .form-control {
   margin-bottom: 10px;
 }
-.loginfom-incorrect {
+.loginform-incorrect {
   color: #b0181e;
 }
 
