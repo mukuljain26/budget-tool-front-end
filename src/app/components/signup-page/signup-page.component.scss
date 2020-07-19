@@ -12,12 +12,14 @@ label {
   padding: 5px;
   background-color: #fff;
   color: #b0181e;
-  width: 197px;
 }
 .signup-button {
   background-color: #007c91;
   color: #fff;
   margin-right: 10px;
+}
+.signup-button:hover {
+  background-color: #006a7c;
 }
 .goBack-to-login-link {
   color: #006a7c;

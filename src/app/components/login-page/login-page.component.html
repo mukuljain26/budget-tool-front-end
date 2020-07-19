@@ -22,7 +22,7 @@
       Password:
     </label>
     <input id="login_password" type="password" formControlName="password" required/>
-    <!-- <input type="checkbox" (click)="showPassword()"><span>Show Password</span> -->
+    <i id="visibility_icon" class="visibility-icon-disabled" (click)="showPassword($event)"></i>
     <div *ngIf="loginForm.controls.password.invalid">
       <div *ngIf="loginForm.controls.password.errors.required && (loginForm.controls.password.dirty || loginForm.controls.password.touched || isSubmitted)" class="alert">
         Password is required.

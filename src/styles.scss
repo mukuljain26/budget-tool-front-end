@@ -44,6 +44,24 @@ a {
   cursor: pointer;
 }
 
+.visibility-icon-disabled {
+  content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23009bb5' d='M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3Cpath fill='%23265867' d='M17.31 5.983l2.115-2.115a.5.5 0 0 1 .707.707l-2.04 2.04c1.451 1.255 2.892 2.96 4.324 5.108a.5.5 0 0 1 0 .554C18.999 17.402 15.536 20 12 20c-1.787 0-3.556-.664-5.31-1.983l-2.115 2.115a.5.5 0 0 1-.707-.707l2.04-2.04c-1.451-1.255-2.892-2.96-4.324-5.108a.5.5 0 0 1 0-.554C5.001 6.598 8.464 4 12 4c1.787 0 3.556.664 5.31 1.983zm-.714.714C15.049 5.563 13.516 5 12 5c-3.071 0-6.211 2.311-9.397 7 1.346 1.982 2.685 3.54 4.014 4.676l9.979-9.979zm.787.627l-9.979 9.979C8.951 18.437 10.484 19 12 19c3.071 0 6.211-2.311 9.397-7-1.346-1.982-2.685-3.54-4.014-4.676z'/%3E%3C/svg%3E");
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.visibility-icon-enabled {
+  content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23265867' d='M1.584 11.723C5.001 6.598 8.464 4 12 4c3.536 0 7 2.598 10.416 7.723a.5.5 0 0 1 0 .554C18.999 17.402 15.536 20 12 20c-3.536 0-7-2.598-10.416-7.723a.5.5 0 0 1 0-.554zM2.603 12c3.186 4.689 6.326 7 9.397 7 3.071 0 6.211-2.311 9.397-7C18.211 7.311 15.071 5 12 5c-3.071 0-6.211 2.311-9.397 7z'/%3E%3Cpath fill='%23009bb5' d='M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E");
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
 /*
   Copyright Google LLC. All Rights Reserved.
   Use of this source code is governed by an MIT-style license that

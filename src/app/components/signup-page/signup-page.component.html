@@ -45,10 +45,14 @@
       <label>
         Create a password:
       </label>
-      <input type="password" formControlName="password" required/>
+      <input id="password" type="password" formControlName="password" required/>
+      <i id="visibility_icon_password" class="visibility-icon-disabled" (click)="showPassword($event)"></i>
       <div *ngIf="signupForm.controls.password.invalid">
         <div *ngIf="signupForm.controls.password.errors.required && (signupForm.controls.password.dirty || signupForm.controls.password.touched || isSubmitted)" class="alert">
           Password is required.
+        </div>
+        <div *ngIf="signupForm.controls.password.errors.pattern && (signupForm.controls.password.dirty || signupForm.controls.password.touched || isSubmitted)" class="alert">
+          Password length must be 8 or more.
         </div>
       </div>
     </div>
@@ -57,7 +61,8 @@
       <label>
         Re-enter password:
       </label>
-      <input type="password" formControlName="reEnteredPassword" required/>
+      <input id="re_password" type="password" formControlName="reEnteredPassword" required/>
+      <i id="visibility_icon_re_password" class="visibility-icon-disabled" (click)="showRePassword($event)"></i>
       <div *ngIf="signupForm.controls.reEnteredPassword.invalid">
         <div *ngIf="signupForm.controls.reEnteredPassword.errors.required && (signupForm.controls.reEnteredPassword.dirty || signupForm.controls.reEnteredPassword.touched || isSubmitted)" class="alert">
           Re-enter password.

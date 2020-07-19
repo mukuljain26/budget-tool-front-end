@@ -19,6 +19,8 @@ export class SignupPageComponent implements OnInit {
   isSuccessInSignup: boolean;
   isUserAlreadyExist: boolean;
   isInternalServerErr: boolean;
+  // passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+  passwordRegex = new RegExp('(?=.{8,})');
 
   constructor(private formBuilder: FormBuilder,
               private apiIntegrationService: ApiIntegrationService,
@@ -36,7 +38,7 @@ export class SignupPageComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
       reEnteredPassword: ['', Validators.required],
     });
   }
@@ -77,6 +79,26 @@ export class SignupPageComponent implements OnInit {
 
   navigateToLogin() {
     this.router.navigate([''], {relativeTo: this.activatedRoute});
+  }
+
+  showPassword(event) {
+    document.getElementById(event.target.id).classList.toggle('visibility-icon-enabled');
+    const passwordElement = <HTMLInputElement>document.getElementById('password');
+    if (passwordElement.type === 'password') {
+      passwordElement.type = 'text';
+    } else {
+      passwordElement.type = 'password';
+    }
+  }
+
+  showRePassword(event) {
+    document.getElementById(event.target.id).classList.toggle('visibility-icon-enabled');
+    const passwordElement = <HTMLInputElement>document.getElementById('re_password');
+    if (passwordElement.type === 'password') {
+      passwordElement.type = 'text';
+    } else {
+      passwordElement.type = 'password';
+    }
   }
 
 }

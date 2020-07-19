@@ -66,7 +66,8 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  showPassword() {
+  showPassword(event) {
+    document.getElementById(event.target.id).classList.toggle('visibility-icon-enabled');
     const passwordElement = <HTMLInputElement>document.getElementById('login_password');
     if (passwordElement.type === 'password') {
       passwordElement.type = 'text';
