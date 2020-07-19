@@ -1,6 +1,7 @@
 <form [formGroup]="loginForm">
-  <p *ngIf="invalidPassword" class="loginform-incorrect">Incorrect password</p>
-  <p *ngIf="isUserInvalid" class="loginform-incorrect">User Invalid</p>
+  <p *ngIf="invalidPassword" class="loginform-error">Incorrect password</p>
+  <p *ngIf="isUserInvalid" class="loginform-error">User Invalid</p>
+  <p *ngIf="isInternalServerErr" class="loginform-error">Internal server error, please try again later</p>
   <div class="form-control">
     <label>
       Email Address:

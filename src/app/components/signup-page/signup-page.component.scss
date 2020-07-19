@@ -1,11 +1,5 @@
 /* ProfileEditorComponent's private CSS styles */
 
-:host {
-  display: flex;
-  flex-direction: column;
-  padding-top: 24px;
-}
-
 label {
   display: block;
   width: 10em;
@@ -31,7 +25,7 @@ label {
 .form-control {
   margin-bottom: 10px;
 }
-.signupform-incorrect {
+.signupform-error {
   color: #b0181e;
 }
 /*

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* Global Styles */
+@font-face {
+  font-family: 'ProximaNova-regular';
+  src: url('https://dle-cdn.mheducation.com/mhe/fonts/proxima-nova/proxima-nova-regular.woff');
+}
 body,
 html,
 input {
@@ -10,7 +14,7 @@ body {
 }
 input {
   height: 36px;
-  width: 30%;
+  width: 40%;
   border: 1px solid #007c91;
   border-radius: 5px;
   padding: 5px 10px;
@@ -38,11 +42,6 @@ button:hover {
 }
 a {
   cursor: pointer;
-}
-
-@font-face {
-  font-family: 'ProximaNova-regular';
-  src: url('https://dle-cdn.mheducation.com/mhe/fonts/proxima-nova/proxima-nova-regular.woff');
 }
 
 /*

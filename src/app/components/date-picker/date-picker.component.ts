@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,18 +7,20 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./date-picker.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class DatePickerComponent implements OnInit, AfterViewChecked {
-  @Output() dob = new EventEmitter<any>();
+export class DatePickerComponent implements OnInit {
+  @Output() dobEmitter = new EventEmitter<any>();
 
   model: NgbDateStruct;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  ngAfterViewChecked() {
-    this.dob.emit(this.model);
+  dob(event) {
+    this.dobEmitter.emit(event);
   }
+
+
 
 }

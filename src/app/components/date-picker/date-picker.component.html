@@ -82,6 +82,7 @@
             placeholder="yyyy-mm-dd"
             name="dp"
             [(ngModel)]="model"
+            (ngModelChange)="dob($event)"
             ngbDatepicker
             #d="ngbDatepicker"
           />

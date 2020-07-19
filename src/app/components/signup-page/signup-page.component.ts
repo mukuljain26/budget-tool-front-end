@@ -18,6 +18,7 @@ export class SignupPageComponent implements OnInit {
   isSubmitted;
   isSuccessInSignup: boolean;
   isUserAlreadyExist: boolean;
+  isInternalServerErr: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private apiIntegrationService: ApiIntegrationService,
@@ -49,6 +50,7 @@ export class SignupPageComponent implements OnInit {
   submitSignupData() {
     this.isSubmitted = true;
     this.isUserAlreadyExist = false;
+    this.isInternalServerErr = false;
     if (this.signupForm.valid) {
       this.signupForm.value['dob'] = this.dob;
       console.log(this.signupForm.value, 'the signup form value');
@@ -65,6 +67,8 @@ export class SignupPageComponent implements OnInit {
       error => {
         if (error.error.code === 11000) {
           this.isUserAlreadyExist = true;
+        } else {
+          this.isInternalServerErr = true;
         }
       }
       );
