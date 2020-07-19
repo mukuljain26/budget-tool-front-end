@@ -11,6 +11,7 @@ import { BudgetComponent } from './components/budget/budget.component';
 import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
     SignupPageComponent,
     BudgetComponent,
     ModalPopupComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
