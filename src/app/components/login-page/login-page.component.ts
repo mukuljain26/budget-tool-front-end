@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
     this.isInternalServerErr = false;
     if (this.loginForm.valid) {
       this.showLoader = true;
-      const reqUrl = `${URLS.API_BASE_URL}user?email=${this.loginForm.value.email}`;
+      const reqUrl = `/user?email=${this.loginForm.value.email}`;
       this.httpService.get(reqUrl).subscribe(response => {
         this.showLoader = false;
         console.log(response, 'response from backend while fetching signup data');
