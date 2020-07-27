@@ -64,7 +64,7 @@ export class SignupPageComponent implements OnInit {
         password: this.signupForm.value.password,
         data: this.signupForm.value
       };
-      const reqUrl = `/user`;
+      const reqUrl = `${URLS.API_BASE_URL}user`;
       this.httpService.post(reqUrl, data).subscribe(response => {
         this.showLoader = false;
         // document.getElementById('budget_tool').classList.remove('show-loader');

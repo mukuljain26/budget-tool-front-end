@@ -1,6 +1,6 @@
 export const URLS = {
     // base url
-    // 'API_BASE_URL': 'http://localhost:3001/',
+    'API_BASE_URL': '/api/',
     // api endpoints
     // "SUBMIT_SIGNUP_DATA":
 }
