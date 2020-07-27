@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
   invalidPassword: boolean;
   isUserInvalid: boolean;
   isInternalServerErr: boolean;
+  showLoader: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,8 +44,10 @@ export class LoginPageComponent implements OnInit {
     this.isSubmitted = true;
     this.isInternalServerErr = false;
     if (this.loginForm.valid) {
+      this.showLoader = true;
       const reqUrl = `${URLS.API_BASE_URL}user?email=${this.loginForm.value.email}`;
       this.httpService.get(reqUrl).subscribe(response => {
+        this.showLoader = false;
         console.log(response, 'response from backend while fetching signup data');
         if (response) {
           if (response.data.password === this.loginForm.value.password) {
@@ -58,6 +61,7 @@ export class LoginPageComponent implements OnInit {
         }
       },
       error => {
+        this.showLoader = false;
         this.isInternalServerErr = true;
         console.log(error, 'error while fetching signup data from backend');
       });

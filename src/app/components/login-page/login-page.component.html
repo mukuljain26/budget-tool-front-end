@@ -2,6 +2,7 @@
   <p *ngIf="invalidPassword" class="loginform-error">Incorrect password</p>
   <p *ngIf="isUserInvalid" class="loginform-error">User Invalid</p>
   <p *ngIf="isInternalServerErr" class="loginform-error">Internal server error, please try again later</p>
+  <app-loader *ngIf="showLoader"></app-loader>
   <div class="form-control">
     <label>
       Email Address:

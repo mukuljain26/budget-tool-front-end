@@ -19,6 +19,7 @@ export class SignupPageComponent implements OnInit {
   isSuccessInSignup: boolean;
   isUserAlreadyExist: boolean;
   isInternalServerErr: boolean;
+  showLoader: boolean;
   // passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
   passwordRegex = new RegExp('(?=.{8,})');
 
@@ -54,6 +55,8 @@ export class SignupPageComponent implements OnInit {
     this.isUserAlreadyExist = false;
     this.isInternalServerErr = false;
     if (this.signupForm.valid) {
+      this.showLoader = true;
+      // document.getElementById('budget_tool').classList.add('show-loader');
       this.signupForm.value['dob'] = this.dob;
       console.log(this.signupForm.value, 'the signup form value');
       const data = {
@@ -63,10 +66,14 @@ export class SignupPageComponent implements OnInit {
       };
       const reqUrl = `${URLS.API_BASE_URL}user`;
       this.httpService.post(reqUrl, data).subscribe(response => {
+        this.showLoader = false;
+        // document.getElementById('budget_tool').classList.remove('show-loader');
         console.log(response, 'response from backend while submitting signup data');
         this.isSuccessInSignup = true;
       },
       error => {
+        this.showLoader = false;
+        // document.getElementById('budget_tool').classList.remove('show-loader');
         if (error.error.code === 11000) {
           this.isUserAlreadyExist = true;
         } else {
